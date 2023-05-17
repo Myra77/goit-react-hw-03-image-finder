@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Modal from '../Modal/Modal';
 
-import css from './ImageGalleryItem.module.css';
+import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
 export default class ImageGalleryItem extends Component {
     state = {
@@ -13,24 +13,25 @@ export default class ImageGalleryItem extends Component {
         this.setState(({ showModal }) => ({ showModal: !showModal }));
     };
     render() {
+        const { tags, webformatURL, largeImageURL } = this.props;
+
         return (
             <li className={css.ImageGalleryItem}>
                 <img
                     className={css.ImageGalleryItemImage}
-                    src={this.props.webformatURL}
-                    alt={this.props.tags}
+                    src={webformatURL}
+                    alt={tags}
                     onClick={this.toggleModal}
             />
             {this.state.showModal && (
                 <Modal onCloseModal={this.toggleModal}>
-                    <img src={this.props.largeImageURL} alt={this.props.tags} />
+                    <img src={largeImageURL} alt={tags} />
                 </Modal>
             )}
             </li>
         );
     }
 };
-
 
 ImageGalleryItem.propTypes = {
     tags: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
-import React, { Component }  from "react";
 import PropTypes from 'prop-types';
-import css from './Modal.module css';
+import { Component }  from "react";
+import css from '../Modal/Modal.module.css';
 
 
 export default class Modal extends Component {
@@ -11,7 +11,7 @@ export default class Modal extends Component {
     };
 
     handleBackdropClick = e => {
-        if (e.target === e.currentTarget) {
+        if (e.target.dataset.action === 'overlay') {
             this.props.onCloseModal();
         }
     };
@@ -25,7 +25,7 @@ export default class Modal extends Component {
     }
     render() {
         return (
-            <div className={css.Overlay} onClick={this.handleBackdropClick}>
+            <div className={css.Overlay} onClick={this.handleBackdropClick} data-action="overlay">
                 <div className={css.Modal}>{this.props.children}</div>
             </div>
         );

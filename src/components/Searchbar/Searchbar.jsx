@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import css from './Searchbar.module.css'
+import css from '../Searchbar/Searchbar.module.css';
+import { BsSearchHeart } from 'react-icons/bs';
 
-export default class SearchBar extends Component {
+export default class Searchbar extends Component {
     state = {
         inputValue: '',
 };
@@ -25,7 +26,7 @@ render() {
         <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={this.handleSubmit}>
             <button type="submit" className={css.SearchFormButton}>
-            <span className={css.SearchFormButtonLabel}>Search</span>
+            <BsSearchHeart style={{fontSize: 30}}>Search</BsSearchHeart>
             </button>
 
             <input
@@ -33,8 +34,8 @@ render() {
             value={this.state.inputValue}
             onChange={this.handleInputChange}
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             />
         </form>
@@ -43,6 +44,6 @@ render() {
 }
 };
 
-// Searchbar.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-// };
+Searchbar.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+};

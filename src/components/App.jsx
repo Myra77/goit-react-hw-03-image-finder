@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'; 
 
-import ImageGallery from './ImageGallery';
+import ImageGallery from './ImageGallery/ImageGallery';
 import SearchBar from './Searchbar/Searchbar';
-// import Loader from './Loader/Loader';
+import Loader from './Loader/Loader';
 import Button from './Button/Button';
 
 export class App extends Component {
@@ -31,7 +31,7 @@ componentDidUpdate(prevProps, prevState) {
     this.setState({ loading: true, page: 1})
     return axios
       .get(
-        `https://pixabay.com/api/?q=${this.state.inputValue}&page=1&key=35100362-df85f1508e5c064e35d3bf680&image_type=photo&orientation=horizontal&per_page=12`
+        `https://pixabay.com/api/?q=${this.state.inputValue}&page=${this.state.page}&key=35100362-df85f1508e5c064e35d3bf680&image_type=photo&orientation=horizontal&per_page=12`
       )
       .then(data =>
         this.setState(prev => ({
@@ -66,13 +66,12 @@ render() {
   return (
     <div>
       <SearchBar onSubmit={this.onSearchSubmit} />
+      {loading && <Loader />}
       {error && <h1>Please try again</h1>}
       {images.length > 0 && (<ImageGallery images={images} />)}
       {images.length > 0 && !loading && images.length < totalHits && (
-        <Button onLoadMore={this.incrementPage} />
-      )}
-   
+        <Button onLoadMore={this.incrementPage} />)}
     </div>
   );
 }
-}
+};

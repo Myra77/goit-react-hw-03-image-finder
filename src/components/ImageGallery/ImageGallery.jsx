@@ -5,12 +5,12 @@ import css from '../ImageGallery/ImageGallery.module.css'
 export default function ImageGallery({ images }) {
     return (
         <ul className={css.ImageGallery}>
-            {images.map(img => (
+            {images.map(image => (
                 <ImageGalleryItem
-                    key={img.id}
-                    // tags={img.tags}
-                    webformatURL={img.webformatURL}
-                    largeImageURL={img.largeImageURL}
+                    key={image.id}
+                    tags={image.tags}
+                    webformatURL={image.webformatURL}
+                    largeImageURL={image.largeImageURL}
                 />
             ))}
         </ul>
