@@ -10,20 +10,20 @@ export class App extends Component {
   state = {
     images: [],
     inputValue: '',
-    page: 1,
-    error: null,
+    page: null,
+    error: false,
     loading: false,
     totalHits: 0,
   };
 
-onSearchSubmit = value => {
-    this.setState({ inputValue: value });
+onSearchSubmit = inputValue => {
+    this.setState({ inputValue, page: 1, images: [] });
 };
 
 incrementPage = () => {
-  this.setState(prevState => {
-    return { page: prevState.page + 1 };
-  });
+  this.setState(prevState => ({
+    page: prevState.page + 1,
+  }));
 };
 
 componentDidUpdate(prevProps, prevState) {
