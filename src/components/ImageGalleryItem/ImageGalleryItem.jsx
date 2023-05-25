@@ -19,7 +19,7 @@ const ImageGalleryItem = ({ tags, webformatURL, largeImageURL }) => {
                     onClick={toggleModal}
             />
             {showModal && (
-                <Modal onCloseModal={toggleModal} imageURL={largeImageURL}>
+                <Modal onCloseModal={toggleModal}>
                     <img src={largeImageURL} alt={tags} />
                 </Modal>
             )}
