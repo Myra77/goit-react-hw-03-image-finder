@@ -1,38 +1,35 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from '../Searchbar/Searchbar.module.css';
 import { BsSearchHeart } from 'react-icons/bs';
 
-export default class Searchbar extends Component {
-    state = {
-        inputValue: '',
+const Searchbar = ({ onSubmit }) => {
+  const [inputValue, setInputValue] = useState('');
+
+const handleInputChange = e => {
+    setInputValue(e.currentTarget.value.toLowerCase())
 };
 
-handleInputChange = e => {
-    this.setState({ inputValue: e.currentTarget.value.toLowerCase()})
-};
-
-handleSubmit = e => {
+const handleSubmit = e => {
     e.preventDefault();
-    if (this.state.inputValue.trim() === '') {
+    if (inputValue.trim() === '') {
         alert('Please enter request');
         return;
     }
-    this.props.onSubmit(this.state.inputValue.toLowerCase());
+    onSubmit(inputValue);
+    setInputValue('');
 };
-
-render() {
     return(
         <header className={css.Searchbar}>
-        <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+        <form className={css.SearchForm} onSubmit={handleSubmit}>
             <button type="submit" className={css.SearchFormButton}>
             <BsSearchHeart style={{fontSize: 30}}>Search</BsSearchHeart>
             </button>
 
             <input
             className={css.SearchFormInput}
-            value={this.state.inputValue}
-            onChange={this.handleInputChange}
+            value={inputValue}
+            onChange={handleInputChange}
             type="text"
             autoComplete="off"
             autoFocus
@@ -41,9 +38,10 @@ render() {
         </form>
         </header>
     );
-}
 };
 
 Searchbar.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 };
+
+export default Searchbar;
