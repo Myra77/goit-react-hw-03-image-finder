@@ -12,7 +12,7 @@ const Modal = ({ onCloseModal, children }) => {
 
     useEffect(() => {
         const handleKeydown = e => {
-            if (e.key === 'Escape') {
+            if (e.code === 'Escape') {
             onCloseModal();
         }
     };
