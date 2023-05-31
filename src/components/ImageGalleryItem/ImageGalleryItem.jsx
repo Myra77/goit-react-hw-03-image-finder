@@ -7,19 +7,29 @@ import css from '../ImageGalleryItem/ImageGalleryItem.module.css';
 const ImageGalleryItem = ({ tags, webformatURL, largeImageURL }) => {
     const [showModal, setShowModal] = useState(false);
 
-    const toggleModal = () => {
-        setShowModal(({ showModal }) => ({ showModal: !showModal }));
+    const toggleModalHandler = () => {
+        setShowModal(!showModal);
     };
+
+    // Optionally can be used the code below, 
+    // const closeModalHandler = () => {
+    //     setShowModal(false);
+    // };
+
+    // const openModalHandler = () => {
+    //     setShowModal(true);
+    // };
+    
         return (
             <li className={css.ImageGalleryItem}>
                 <img
                     className={css.ImageGalleryItemImage}
                     src={webformatURL}
                     alt={tags}
-                    onClick={toggleModal}
+                    onClick={toggleModalHandler}
             />
             {showModal && (
-                <Modal onCloseModal={toggleModal}>
+                <Modal onCloseModal={toggleModalHandler}>
                     <img src={largeImageURL} alt={tags} />
                 </Modal>
             )}

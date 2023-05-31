@@ -17,7 +17,6 @@ const Modal = ({ onCloseModal, children }) => {
         }
     };
     window.addEventListener('keydown', handleKeydown);
-
     return () => {
         window.removeEventListener('keydown', handleKeydown);
     };
