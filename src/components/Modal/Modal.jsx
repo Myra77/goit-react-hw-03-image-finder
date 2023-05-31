@@ -5,7 +5,7 @@ import css from '../Modal/Modal.module.css';
 
 const Modal = ({ onCloseModal, children }) => {
     const handleBackdropClick = e => {
-        if (e.target.dataset.action === 'overlay') {
+        if (e.target === e.currentTarget) {
             onCloseModal();
         }
     };
@@ -16,7 +16,6 @@ const Modal = ({ onCloseModal, children }) => {
             onCloseModal();
         }
     };
-
     window.addEventListener('keydown', handleKeydown);
 
     return () => {
@@ -25,7 +24,7 @@ const Modal = ({ onCloseModal, children }) => {
     }, [onCloseModal]);
 
         return (
-            <div className={css.Overlay} onClick={handleBackdropClick} data-action="overlay">
+            <div className={css.Overlay} onClick={handleBackdropClick}>
                 <div className={css.Modal}>{children}</div>
             </div>
         );
